@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For My Kannama 💖 — From Kanna </title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#06030e;--bg2:#0b0618;
+  --magenta:#e91e8c;--rose:#ff6bb3;
+  --gold:#f7c948;--gold2:#ffe082;
+  --lav:#c084fc;--txt:#ffe4f0;--txt2:#cca0bc;
+  --gm:rgba(233,30,140,.55);
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box
+}
+html{
+  scroll-behavior:smooth
+}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:'Quicksand',sans-serif;
+  cursor:none;
+  overflow-x:hidden;min-height:100vh
+}
+
+/* CURSOR */
+#cur{
+  position:fixed;
+  z-index:99999;
+  pointer-events:none;
+  font-size:30px;
+  transform:translate(-50%,-50%);
+  transition:transform .1s;
+  filter:drop-shadow(0 0 8px var(--gm));
+  user-select:none
+}
+#cur.pop{
+  transform:translate(-50%,-50%) scale(1.9)!important
+}
+
+/* CANVASES */
+#starC,#roseC{
+  position:fixed;
+  inset:0;
+  pointer-events:none
+}
+#starC{
+  z-index:0
+}
+#roseC{
+  z-index:3
+}
+
+/* NOISE */
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  opacity:.3;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+  background-size:180px
+}
+
+/* TICKER */
+.ticker{
+  position:relative;
+  z-index:10;
+  overflow:hidden;
+  white-space:nowrap;
+  padding:11px 0;
+  background:linear-gradient(90deg,#b5006e,var(--magenta),#b5006e);
+  color:#fff;font-size:14px;
+  letter-spacing:1px;
+  font-weight:600;
+  border-bottom:1px solid rgba(255,107,179,.2)
+}
+.t-inner{
+  display:inline-block;
+  animation:tick 26s linear infinite
+}
+@keyframes tick{
+  from{transform:translateX(100vw)}
+  to{transform:translateX(-100%)}}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:60px 24px 90px;
+  position:relative;
+  z-index:5;
+  overflow:hidden
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:radial-gradient(ellipse 750px 550px at 50% 45%,rgba(233,30,140,.16) 0%,transparent 70%),
+             radial-gradient(ellipse 400px 300px at 80% 20%,rgba(247,201,72,.07) 0%,transparent 60%)}
+.crown-em{
+  font-size:clamp(55px,11vw,95px);
+  display:block;
+  margin-bottom:10px;
+  animation:crownBob 2.4s ease-in-out infinite
+}
+@keyframes crownBob{
+  0%,100%{transform:translateY(0) rotate(-4deg)}
+  50%{transform:translateY(-14px) rotate(4deg)}
+}
+.hero-tag{
+  font-size:12px;
+  letter-spacing:5px;
+  text-transform:uppercase;color:var(--gold2);
+  background:rgba(247,201,72,.08);
+  border:1px solid rgba(247,201,72,.28);
+  padding:7px 22px;border-radius:40px;
+  margin-bottom:30px;
+  backdrop-filter:blur(12px);
+  opacity:0;
+  animation:fslide .9s ease forwards .3s
+}
+@keyframes fslide{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero-h1{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(54px,13vw,115px);
+  line-height:1.05;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--rose) 50%,var(--lav) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:18px;
+  filter:drop-shadow(0 0 32px rgba(233,30,140,.45));
+  opacity:0;
+  animation:fslide .9s ease forwards .6s
+}
+.hero-by{font-family:'Cormorant Garamond',serif;
+font-style:italic;
+  font-size:clamp(16px,3vw,25px);
+  color:var(--rose);
+  letter-spacing:2px;
+  opacity:0;
+  animation:fslide .9s ease forwards .9s;
+  margin-bottom:30px
+}
+.hero-sub{font-family:'Cormorant Garamond',serif;
+font-style:italic;
+  font-size:clamp(16px,2.5vw,22px);
+  color:var(--txt2);
+  max-width:580px;
+  line-height:1.85;
+  opacity:0;
+  animation:fslide .9s ease forwards 1.2s}
+.scroll-hint{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:26px;animation:bob 2s ease-in-out infinite;
+  z-index:6
+}
+@keyframes bob{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(11px)}
+}
+
+/* ─── SECTIONS ─── */
+.sec{
+  padding:clamp(65px,11vw,115px) 24px;
+  position:relative;z-index:5
+}
+.inner{
+  max-width:830px;
+  margin:0 auto
+}
+.lbl{
+  font-size:11px;
+  letter-spacing:6px;
+  text-transform:uppercase;color:var(--gold);
+  font-weight:600;
+  margin-bottom:14px
+}
+.stitle{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(38px,8vw,68px);
+  background:linear-gradient(135deg,var(--gold2),var(--rose));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:26px;line-height:1.2;
+  filter:drop-shadow(0 0 18px rgba(247,201,72,.28))}
+.bp{
+  font-size:clamp(16px,2.2vw,19px);
+  color:var(--txt2);
+  line-height:1.95;
+  margin-bottom:18px;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic
+}
+.div{
+  text-align:center;
+  padding:8px;
+  position:relative;
+  z-index:5;
+  font-size:26px;
+  letter-spacing:10px;
+  opacity:.3
+}
+
+/* CRIME */
+.crime-s{
+  background:linear-gradient(160deg,#110820 0%,#0e0617 100%)
+}
+.crime-box{background:rgba(255,255,255,.025);border:1px solid rgba(233,30,140,.22);
+  border-radius:30px;padding:clamp(34px,6vw,62px);position:relative;overflow:hidden;
+  box-shadow:0 0 70px rgba(233,30,140,.09),inset 0 1px 0 rgba(255,255,255,.05);backdrop-filter:blur(20px)}
+.crime-box::before{content:'"';position:absolute;top:-25px;left:14px;
+  font-family:'Cormorant Garamond',serif;font-size:210px;color:rgba(233,30,140,.05);line-height:1;pointer-events:none}
+.crime-line{font-family:'Great Vibes',cursive;font-size:clamp(28px,5.5vw,50px);color:var(--rose);line-height:1.3;margin-bottom:20px}
+.crime-line .hl{color:var(--gold);text-shadow:0 0 20px rgba(247,201,72,.55)}
+.gbar{height:3px;width:180px;background:linear-gradient(90deg,var(--magenta),var(--gold));
+  border-radius:3px;margin-bottom:22px;box-shadow:0 0 14px var(--gm);
+  animation:gbarP 2.5s ease-in-out infinite}
+@keyframes gbarP{0%,100%{opacity:.55;width:175px}50%{opacity:1;width:260px}}
+
+/* CARDS */
+.cards-s{background:var(--bg2)}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:22px;margin-top:14px}
+.tcard{background:rgba(255,255,255,.025);border:1px solid rgba(255,107,179,.16);
+  border-radius:22px;padding:30px 24px;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+  position:relative;overflow:hidden;backdrop-filter:blur(12px)}
+.tcard::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 180px 130px at 50% 0%,rgba(233,30,140,.06),transparent);pointer-events:none}
+.tcard:hover{transform:translateY(-10px) rotate(.6deg);
+  box-shadow:0 28px 75px rgba(233,30,140,.18),0 0 0 1px rgba(255,107,179,.33);border-color:rgba(255,107,179,.38)}
+.tcard .em{font-size:42px;margin-bottom:14px;display:block;animation:emF 3s ease-in-out infinite}
+.tcard:nth-child(2) .em{animation-delay:.5s}
+.tcard:nth-child(3) .em{animation-delay:1s}
+.tcard:nth-child(4) .em{animation-delay:1.5s}
+@keyframes emF{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.tcard h3{font-family:'Great Vibes',cursive;font-size:27px;color:var(--rose);margin-bottom:9px}
+.tcard p{font-size:14px;color:var(--txt2);line-height:1.75}
+
+/* ONLY ONE */
+.only-s{background:var(--bg)}
+.ogrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:640px){.ogrid{grid-template-columns:1fr;gap:28px}}
+.ovis{text-align:center;font-size:clamp(80px,20vw,148px);
+  animation:gF 4s ease-in-out infinite;filter:drop-shadow(0 0 42px rgba(233,30,140,.5))}
+@keyframes gF{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.05)}}
+.otext h2{font-family:'Great Vibes',cursive;font-size:clamp(34px,7vw,62px);
+  background:linear-gradient(135deg,var(--rose),var(--lav));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:18px;line-height:1.2}
+
+/* ─── SVG SCENE ─── */
+.scene-s{background:linear-gradient(160deg,#0c0620 0%,#110828 100%);
+  padding:clamp(60px,10vw,110px) 24px;position:relative;z-index:5;text-align:center;overflow:hidden}
+.scene-s::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 700px 500px at 50% 60%,rgba(233,30,140,.1) 0%,transparent 70%)}
+.scene-title{font-family:'Great Vibes',cursive;font-size:clamp(34px,7vw,66px);
+  background:linear-gradient(135deg,var(--gold2),var(--rose));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:38px;filter:drop-shadow(0 0 18px rgba(247,201,72,.28))}
+.svg-wrap{max-width:540px;margin:0 auto;
+  filter:drop-shadow(0 22px 65px rgba(233,30,140,.22));
+  animation:sceneBob 5s ease-in-out infinite}
+@keyframes sceneBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+.svg-wrap svg{width:100%;height:auto}
+/* SVG animations */
+.tear{animation:tearDrop 2.2s ease-in-out infinite}
+.tear2{animation:tearDrop 2.2s ease-in-out infinite;animation-delay:.85s}
+@keyframes tearDrop{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:.7}100%{transform:translateY(30px);opacity:0}}
+.hgift{animation:hgAnim 1.9s ease-in-out infinite}
+@keyframes hgAnim{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-15px) scale(1.12)}}
+.cs1{animation:csp 1.5s ease-in-out infinite}
+.cs2{animation:csp 1.5s ease-in-out infinite;animation-delay:.5s}
+.cs3{animation:csp 1.5s ease-in-out infinite;animation-delay:1s}
+@keyframes csp{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1)}}
+
+/* ─── KISS ─── */
+.kiss-s{
+  min-height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  z-index:5;
+  padding:80px 24px;
+  overflow:hidden;
+  background:radial-gradient(ellipse 900px 600px at 50% 50%,rgba(233,30,140,.18) 0%,transparent 70%),var(--bg)
+}
+.k-inner{position:relative;z-index:2}
+.k-heart{font-size:clamp(65px,13vw,115px);display:block;margin-bottom:18px;
+  animation:hPulse 1.4s ease-in-out infinite;filter:drop-shadow(0 0 50px rgba(233,30,140,.8))}
+@keyframes hPulse{0%,100%{transform:scale(1)}30%{transform:scale(1.24)}60%{transform:scale(1.1)}}
+.k-title{font-family:'Great Vibes',cursive;font-size:clamp(38px,10vw,96px);
+  background:linear-gradient(135deg,var(--gold),var(--rose),var(--lav),var(--gold));
+  background-size:300% 300%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1.15;margin-bottom:22px;
+  filter:drop-shadow(0 0 28px rgba(233,30,140,.4));
+  animation:gShift 4s ease infinite,fslide 1s ease forwards .2s;opacity:0}
+@keyframes gShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.k-sub{font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(16px,2.6vw,22px);color:var(--txt2);max-width:520px;margin:0 auto 40px;line-height:1.95;
+  animation:fslide 1s ease forwards .6s;opacity:0}
+.k-btn{display:inline-block;padding:18px 50px;
+  background:linear-gradient(135deg,var(--magenta),#ff3da0);
+  color:#fff;font-family:'Great Vibes',cursive;font-size:28px;
+  border-radius:60px;border:none;cursor:none;
+  box-shadow:0 0 55px rgba(233,30,140,.55),0 8px 30px rgba(0,0,0,.3);
+  animation:btnG 2.4s ease-in-out infinite;transition:transform .2s}
+.k-btn:hover{transform:scale(1.08)}
+@keyframes btnG{0%,100%{box-shadow:0 0 55px rgba(233,30,140,.55),0 8px 30px rgba(0,0,0,.3)}
+  50%{box-shadow:0 0 110px rgba(233,30,140,.9),0 8px 50px rgba(0,0,0,.3)}}
+
+/* kiss burst emojis */
+.kfly{position:fixed;pointer-events:none;z-index:9997;
+  animation:kflyA 2.4s ease forwards}
+@keyframes kflyA{0%{opacity:1;transform:translate(0,0) scale(.7)}100%{opacity:0;transform:translate(var(--kx),var(--ky)) scale(1.5)}}
+
+/* sparks */
+.spark{position:fixed;pointer-events:none;z-index:99998;
+  width:9px;height:9px;border-radius:50%;animation:sparkO .7s ease forwards}
+@keyframes sparkO{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
+
+footer{text-align:center;padding:30px 24px;background:var(--bg2);
+  border-top:1px solid rgba(255,107,179,.1);font-size:12px;
+  color:rgba(255,255,255,.22);letter-spacing:2px;position:relative;z-index:5}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(48px);transition:opacity .8s ease,transform .8s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv.l{transform:translateX(-50px)}.rv.l.vis{transform:translateX(0)}
+.rv.r{transform:translateX(50px)}.rv.r.vis{transform:translateX(0)}
+
+@media(max-width:480px){.crime-box{padding:24px 18px}}
+</style>
+</head>
+<body>
+
+       <audio id="myAudio">
+  <source src="mm\song.mp3" type="audio/mpeg">
+</audio>
+
+<div id="cur">👑</div>
+<canvas id="starC"></canvas>
+<canvas id="roseC"></canvas>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="t-inner">
+    🌹 For my one and only Kannama &nbsp;✦&nbsp; Made with every piece of my heart — by Kanna &nbsp;✦&nbsp;  I love You &nbsp;✦&nbsp; I only have you Kannama &nbsp;✦&nbsp; You are my universe &nbsp;✦&nbsp; 💖 From Sai  → Kannama &nbsp;✦&nbsp; 🌹
+  </span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="crown-em">👑</span>
+  <div class="hero-tag">✦ A place made only for Kannama 💖 ✦</div>
+  <h1 class="hero-h1" onclick="playSong()">You are,<br>My only One Kannama</h1>
+  <div class="hero-by">— made for you by Kanna(sai) 🌙</div>
+  <p class="hero-sub">There are things living inside my chest that I couldn't say with voice. So I built you a whole place — just for us. Read every word. Every line is true.</p>
+  <div class="scroll-hint">🌸</div>
+</section>
+
+<!-- CRIME -->
+<section class="sec crime-s">
+  <div class="inner">
+    <div class="crime-box rv">
+      <div class="lbl">The Kannama 💖</div>
+      <div class="gbar"></div>
+      <div class="crime-line" onclick="on()">You are the only one I have <span class="hl">Kannama</span><br> 💖</div>
+      <p class="bp"> laughed until we couldn't breathe, and shared the things I have never spoken to anyone else. </p>
+      <p class="bp">You are not just my Best Friend. You are the only person I don't need to wear a mask around. And that, <em>Kannama</em>, is the rarest gift in the world.</p>
+    </div>
+  </div>
+</section>
+
+<div class="div">✦ 🌹 ✦</div>
+
+<!-- TRUTH CARDS -->
+<section class="sec cards-s">
+  <div class="inner">
+    <div class="lbl rv">What I need you to know</div>
+    <h2 class="stitle rv">My truths about us 🌸</h2>
+    <div class="cgrid">
+      <div class="tcard rv">
+        <span class="em">🥹</span>
+        <h3>You are my only one</h3>
+        <p>When I need someone who just gets it — it's your face. Always yours. You are the only one I have, Kannama.</p>
+      </div>
+      <div class="tcard rv">
+        <span class="em">💬</span>
+        <h3>I talk openly only with you</h3>
+        <p>With everyone else I filter, I perform, I hide. But with you? I just breathe and let everything come out. You made that safe for me.</p>
+      </div>
+      <div class="tcard rv">
+        <span class="em">💖</span>
+        <h3>I am  belong with you</h3>
+        <p> You are the only one i have a Good friend,Bestieee,Gf all is You </p>
+      </div>
+      <div class="tcard rv">
+        <span class="em">🤫</span>
+        <h3>Your secrets are sealed</h3>
+        <p>Everything you've ever told me in the dark — stays with me. Forever. I would carry your secrets to my last breath.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div">✦ 💗 ✦</div>
+
+<!-- ONLY ONE -->
+<section class="sec only-s">
+  <div class="inner">
+    <div class="ogrid">
+      <div class="ovis rv l">🫂</div>
+      <div class="otext">
+        <div class="lbl rv">From Kanna, to Kannama</div>
+        <h2 class="rv">I only have you</h2>
+        <p class="bp rv">I don't have a big circle. I don't have many people I can call <em>mine</em>. But I have <strong style="color:var(--rose)">you</strong>. And that makes up for everything and everyone I never had.</p>
+        <p class="bp rv">You are my whole circle. My person. My everything. And I never want you to forget that, Kannama.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div">✦ 🌹 ✦</div>
+
+<!-- SVG SCENE -->
+<section class="scene-s">
+  <div class="lbl rv" style="text-align:center">A moment from my heart</div>
+  <div class="scene-title rv">This is me… in front of you 🥺</div>
+
+  <div class="svg-wrap rv">
+   <svg viewBox="0 0 560 500" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <defs>
+      <radialGradient id="bg" cx="50%" cy="55%" r="55%">
+        <stop offset="0%" stop-color="#2a0a22"/>
+        <stop offset="100%" stop-color="#06030e"/>
+      </radialGradient>
+      <radialGradient id="fl" cx="50%" cy="0%" r="100%">
+        <stop offset="0%" stop-color="#7b1558" stop-opacity=".4"/>
+        <stop offset="100%" stop-color="#06030e" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="gl"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="sgl"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+
+    <!-- BG -->
+    <rect width="560" height="500" rx="28" fill="url(#bg)"/>
+    <ellipse cx="280" cy="470" rx="220" ry="28" fill="url(#fl)"/>
+
+    <!-- stars -->
+    <circle cx="45" cy="30" r="1.5" fill="white" opacity=".6"/>
+    <circle cx="100" cy="55" r="1" fill="white" opacity=".5"/>
+    <circle cx="490" cy="28" r="1.5" fill="white" opacity=".6"/>
+    <circle cx="520" cy="58" r="1" fill="white" opacity=".4"/>
+    <circle cx="35" cy="110" r="1" fill="white" opacity=".4"/>
+    <circle cx="530" cy="100" r="1.2" fill="white" opacity=".5"/>
+    <circle cx="280" cy="18" r="1.5" fill="#f7c948" opacity=".7"/>
+    <circle cx="155" cy="42" r="1" fill="white" opacity=".45"/>
+    <circle cx="400" cy="36" r="1" fill="white" opacity=".5"/>
+    <circle cx="70" cy="200" r="1" fill="white" opacity=".3"/>
+    <circle cx="500" cy="180" r="1" fill="white" opacity=".3"/>
+
+    <!-- glow halos -->
+    <ellipse cx="370" cy="220" rx="90" ry="90" fill="#e91e8c" opacity=".04"/>
+    <ellipse cx="185" cy="240" rx="70" ry="70" fill="#4a0080" opacity=".06"/>
+
+    <!-- ══ GIRL — Princess Bittu ══ -->
+    <!-- gown shadow -->
+    <ellipse cx="375" cy="462" rx="68" ry="20" fill="#000" opacity=".2"/>
+    <!-- gown back -->
+    <path d="M295 300 Q278 390 282 462 Q375 478 465 462 Q468 390 452 300Z" fill="#6a0080"/>
+    <!-- gown main -->
+    <path d="M300 298 Q284 388 288 460 Q375 475 462 460 Q466 388 450 298Z" fill="#9c27b0"/>
+    <!-- gown shading left -->
+    <path d="M300 298 Q286 392 290 460 Q330 470 355 468 L355 298Z" fill="#7b1fa2"/>
+    <!-- gown shading right -->
+    <path d="M450 298 Q464 392 460 460 Q420 470 395 468 L395 298Z" fill="#6a0080"/>
+    <!-- gown sparkles -->
+    <circle cx="320" cy="345" r="2.2" fill="#e040fb" opacity=".85"/>
+    <circle cx="390" cy="320" r="1.8" fill="#f7c948" opacity=".9"/>
+    <circle cx="408" cy="375" r="2.2" fill="#e040fb" opacity=".75"/>
+    <circle cx="310" cy="400" r="1.8" fill="#f7c948" opacity=".85"/>
+    <circle cx="370" cy="430" r="2" fill="#ce93d8" opacity=".8"/>
+    <!-- waist sash -->
+    <path d="M302 302 Q375 314 448 302 Q446 322 375 330 Q304 322 302 302Z" fill="#f48fb1"/>
+    <!-- torso -->
+    <rect x="343" y="232" width="64" height="72" rx="18" fill="#ffb3c6"/>
+    <!-- neck -->
+    <rect x="362" y="222" width="20" height="22" rx="10" fill="#ffc8d5"/>
+    <!-- HEAD -->
+    <ellipse cx="372" cy="192" rx="40" ry="44" fill="#ffd0dc"/>
+    <!-- hair top -->
+    <path d="M334 172 Q372 128 410 172 Q408 144 372 134 Q336 144 334 172Z" fill="#1c0a3a"/>
+    <!-- long hair -->
+    <path d="M334 172 Q322 210 326 254 Q338 248 340 236 Q336 198 346 178Z" fill="#2d1460"/>
+    <path d="M410 172 Q422 210 418 254 Q406 248 404 236 Q408 198 398 178Z" fill="#2d1460"/>
+    <!-- hair back -->
+    <path d="M334 182 Q318 248 324 304 Q340 310 346 294 Q336 228 350 200Z" fill="#1c0a3a" opacity=".8"/>
+    <path d="M410 182 Q426 248 420 304 Q404 310 398 294 Q408 228 394 200Z" fill="#1c0a3a" opacity=".8"/>
+    <!-- eyes -->
+    <ellipse cx="358" cy="196" rx="6.5" ry="7.5" fill="#16082e"/>
+    <ellipse cx="386" cy="196" rx="6.5" ry="7.5" fill="#16082e"/>
+    <circle cx="360" cy="193" r="2.2" fill="white"/>
+    <circle cx="388" cy="193" r="2.2" fill="white"/>
+    <!-- lashes -->
+    <path d="M351 189 L349 184 M354 188 L353 183 M357 187 L357 182" stroke="#16082e" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M379 187 L379 182 M382 188 L383 183 M385 189 L387 184" stroke="#16082e" stroke-width="1.2" stroke-linecap="round"/>
+    <!-- brows -->
+    <path d="M350 184 Q358 179 366 183" stroke="#3d1040" stroke-width="2" stroke-linecap="round"/>
+    <path d="M378 183 Q386 179 394 184" stroke="#3d1040" stroke-width="2" stroke-linecap="round"/>
+    <!-- smile -->
+    <path d="M362 213 Q372 222 382 213" stroke="#d06075" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <!-- blush -->
+    <ellipse cx="346" cy="208" rx="9" ry="5.5" fill="#ff9eb0" opacity=".5"/>
+    <ellipse cx="398" cy="208" rx="9" ry="5.5" fill="#ff9eb0" opacity=".5"/>
+    <!-- nose -->
+    <path d="M369 205 Q372 210 375 205" stroke="#d08090" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- earrings -->
+    <circle cx="331" cy="200" r="4" fill="#f7c948" opacity=".9"/>
+    <circle cx="331" cy="208" r="2.5" fill="#e91e8c" opacity=".9"/>
+    <circle cx="413" cy="200" r="4" fill="#f7c948" opacity=".9"/>
+    <circle cx="413" cy="208" r="2.5" fill="#e91e8c" opacity=".9"/>
+    <!-- CROWN -->
+    <path d="M340 155 L349 130 L362 147 L372 112 L382 147 L395 130 L404 155Z" fill="#f7c948" filter="url(#gl)"/>
+    <rect x="338" y="152" width="66" height="8" rx="4" fill="#f7c948"/>
+    <circle cx="372" cy="112" r="6" fill="#e91e8c" class="cs1"/>
+    <circle cx="349" cy="130" r="4" fill="#f7c948" class="cs2"/>
+    <circle cx="395" cy="130" r="4" fill="#f7c948" class="cs3"/>
+    <circle cx="345" cy="155" r="3.5" fill="#e91e8c"/>
+    <circle cx="372" cy="152" r="4" fill="#ff6bb3"/>
+    <circle cx="399" cy="155" r="3.5" fill="#e91e8c"/>
+    <!-- girl arms -->
+    <path d="M344 252 Q322 282 315 314" stroke="#ffb3c6" stroke-width="13" stroke-linecap="round" fill="none"/>
+    <path d="M406 252 Q428 282 435 314" stroke="#ffb3c6" stroke-width="13" stroke-linecap="round" fill="none"/>
+
+    <!-- ══ BOY — Sona/Sai ══ -->
+    <!-- shadow -->
+    <ellipse cx="178" cy="460" rx="58" ry="17" fill="#000" opacity=".22"/>
+    <!-- kneeling legs -->
+    <path d="M152 360 Q143 405 140 455" stroke="#283593" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <path d="M200 360 Q210 405 212 455" stroke="#1a237e" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <!-- shoes -->
+    <ellipse cx="140" cy="456" rx="17" ry="9" fill="#0d1035"/>
+    <ellipse cx="212" cy="456" rx="17" ry="9" fill="#0d1035"/>
+    <!-- trouser detail -->
+    <path d="M148 365 Q145 400 142 440" stroke="#1a237e" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <path d="M204 365 Q208 400 208 440" stroke="#0d1a6e" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <!-- body -->
+    <path d="M148 248 Q138 308 142 365 Q178 380 214 365 Q218 308 208 248Z" fill="#3949ab"/>
+    <path d="M148 248 Q140 308 144 365 Q178 376 178 376 L178 248Z" fill="#303f9f"/>
+    <!-- shirt collar line -->
+    <path d="M164 258 L178 278 L192 258" stroke="#5c6bc0" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- neck -->
+    <rect x="165" y="236" width="22" height="22" rx="8" fill="#fdc5b0"/>
+    <!-- HEAD -->
+    <ellipse cx="176" cy="208" rx="35" ry="37" fill="#ffd0bc"/>
+    <!-- hair -->
+    <path d="M143 194 Q176 158 209 194 Q207 168 176 160 Q145 168 143 194Z" fill="#111"/>
+    <path d="M143 194 Q134 202 136 214 Q142 205 145 198Z" fill="#111"/>
+    <path d="M209 194 Q218 202 216 214 Q210 205 207 198Z" fill="#111"/>
+    <!-- sad eyes half-closed -->
+    <path d="M160 208 Q168 201 176 208" stroke="#111" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <path d="M176 208 Q184 201 192 208" stroke="#111" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="168" cy="209" rx="4.5" ry="3.5" fill="#2d1200"/>
+    <ellipse cx="184" cy="209" rx="4.5" ry="3.5" fill="#2d1200"/>
+    <!-- sad brows tilted inward -->
+    <path d="M158 198 Q166 192 175 197" stroke="#221000" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M177 197 Q186 192 194 198" stroke="#221000" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- sad mouth -->
+    <path d="M165 224 Q176 218 187 224" stroke="#b06050" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- blush -->
+    <ellipse cx="155" cy="218" rx="9" ry="5" fill="#ff9080" opacity=".45"/>
+    <ellipse cx="197" cy="218" rx="9" ry="5" fill="#ff9080" opacity=".45"/>
+    <!-- nose -->
+    <path d="M173 216 Q176 221 179 216" stroke="#b09080" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- TEARS -->
+    <ellipse cx="160" cy="222" rx="3.2" ry="5.5" fill="#7de8ff" opacity=".95" class="tear"/>
+    <ellipse cx="192" cy="223" rx="3.2" ry="5.5" fill="#7de8ff" opacity=".95" class="tear2"/>
+    <!-- drop tear streaks -->
+    <path d="M159 226 Q157 235 159 242" stroke="#7de8ff" stroke-width="2" stroke-linecap="round" opacity=".4" class="tear"/>
+    <path d="M191 227 Q193 236 191 243" stroke="#7de8ff" stroke-width="2" stroke-linecap="round" opacity=".4" class="tear2"/>
+    <!-- arms outstretched reaching -->
+    <path d="M148 268 Q122 288 108 315" stroke="#fdc5b0" stroke-width="13" stroke-linecap="round" fill="none"/>
+    <path d="M208 268 Q234 288 250 315" stroke="#fdc5b0" stroke-width="13" stroke-linecap="round" fill="none"/>
+    <!-- hands -->
+    <circle cx="106" cy="318" r="9" fill="#fdc5b0"/>
+    <circle cx="252" cy="318" r="9" fill="#fdc5b0"/>
+
+    <!-- ══ FLOATING HEART between them ══ -->
+    <g class="hgift" transform="translate(0,0)">
+      <path d="M293 310 C293 298 278 290 272 300 C266 290 251 298 251 310 C251 322 272 337 272 337 C272 337 293 322 293 310Z"
+        fill="#e91e8c" filter="url(#sgl)"/>
+      <path d="M286 307 C283 302 278 300 276 304" stroke="#ff9eb5" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".7"/>
+    </g>
+    <!-- small hearts floating up -->
+    <text font-size="14" fill="#e91e8c" opacity=".7">
+      <animate attributeName="y" values="350;260;170" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;.8;0" dur="3s" repeatCount="indefinite"/>
+      ♥
+    </text>
+    <text x="240" font-size="11" fill="#f7c948" opacity=".6">
+      <animate attributeName="y" values="360;270" dur="3.8s" begin="1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;.7;0" dur="3.8s" begin="1s" repeatCount="indefinite"/>
+      ✦
+    </text>
+    <text x="300" font-size="12" fill="#ff6bb3" opacity=".6">
+      <animate attributeName="y" values="355;260" dur="4.2s" begin="1.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;.7;0" dur="4.2s" begin="1.8s" repeatCount="indefinite"/>
+      ♥
+    </text>
+
+    <!-- ground glow -->
+    <ellipse cx="280" cy="468" rx="200" ry="18" fill="#e91e8c" opacity=".06"/>
+   </svg>
+  </div>
+
+  <p class="bp rv" style="text-align:center;max-width:600px;margin:36px auto 0;font-size:clamp(16px,2.3vw,20px)">
+    This is me —  heart in hand, Happyness in eyes — just for you, <strong style="color:var(--rose)">Kannama</strong>. I have no walls left. This is everything I feel.
+  </p>
+</section>
+
+<div class="div">✦ 🌹 💗 🌹 ✦</div>
+
+<!-- KISS FINALE -->
+<section class="kiss-s">
+  <div class="k-inner">
+    <span class="k-heart">💖</span>
+    <h2 class="k-title">can you be always with me as<br>  a best friend  (నువ్వు ఒక మంచి స్నేహితుడిలా ఎల్లప్పుడూ నాకు తోడుగా ఉండగలవా?)😘</h2>
+    <p class="k-sub">After all of this… after every word, every tear, every feeling I poured into this page — I have just one tiny adorable request for my <strong style="color:var(--gold)">Kannama </strong> 🥺</p>
+    <button class="k-btn" onclick="sendKiss()">Yes Kanna,</button>
+  </div>
+</section>
+
+<footer>
+  🌹 made with every piece of my heart &nbsp;✦&nbsp; from sai (Kanna) → for Kannama &nbsp;✦&nbsp; always 💖 🌹
+</footer>
+
+<script>
+ window.onload = function() {
+    alert("Welcome to the website!");
+  };
+
+ function playSong() {
+    document.getElementById("myAudio").play();
+  }
+
+/* ── STARFIELD ── */
+const sc=document.getElementById('starC'),sx=sc.getContext('2d');
+let stars=[],W,H;
+function rsz(){W=sc.width=innerWidth;H=sc.height=innerHeight;stars=[];
+  for(let i=0;i<300;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.3,a:Math.random(),sp:Math.random()*.004+.001})}
+function dStars(){sx.clearRect(0,0,W,H);stars.forEach(s=>{s.a+=s.sp;if(s.a>1)s.a=0;sx.save();sx.globalAlpha=s.a*.9;sx.fillStyle='#fff';sx.beginPath();sx.arc(s.x,s.y,s.r,0,Math.PI*2);sx.fill();sx.restore()});requestAnimationFrame(dStars)}
+rsz();addEventListener('resize',rsz);dStars();
+
+/* ── ROSE / PETAL RAIN ── */
+const rc=document.getElementById('roseC'),rx=rc.getContext('2d');
+function rszR(){rc.width=innerWidth;rc.height=innerHeight}rszR();addEventListener('resize',rszR);
+const POOL=['🌹','🌸','🌺','🌷','✨','💐','🍀','🌻'];
+let petals=[];
+function mkP(){return{x:Math.random()*innerWidth,y:-50,sz:15+Math.random()*20,
+  spd:1+Math.random()*1.8,sw:Math.random()*90-45,ang:Math.random()*Math.PI*2,
+  rot:(Math.random()-.5)*.055,em:POOL[Math.floor(Math.random()*POOL.length)],op:0,fi:true}}
+for(let i=0;i<22;i++){let p=mkP();p.y=Math.random()*innerHeight;petals.push(p)}
+function dPetals(){rx.clearRect(0,0,rc.width,rc.height);
+  petals.forEach(p=>{
+    if(p.fi){p.op+=.018;if(p.op>=.88){p.op=.88;p.fi=false}}
+    p.y+=p.spd;p.x+=Math.sin(p.y/65+p.sw*.04)*1.3;p.ang+=p.rot;
+    rx.save();rx.globalAlpha=p.op;rx.font=p.sz+'px serif';
+    rx.translate(p.x,p.y);rx.rotate(p.ang);rx.fillText(p.em,-p.sz/2,-p.sz/2);rx.restore();
+    if(p.y>innerHeight+60){Object.assign(p,mkP());p.y=-50;p.op=0;p.fi=true}
+  });requestAnimationFrame(dPetals)}
+dPetals();
+
+/* ── CURSOR — auto-rotate every 1.6s ── */
+const cur=document.getElementById('cur');
+const EMOJIS=['👑','💗','😭','💋','😘','🥹','💌','😍','🥺','💖','✨','🌸','💫','🌹','💕','🤍','😪','💐'];
+let ci=0;
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+setInterval(()=>{ci=(ci+1)%EMOJIS.length;cur.textContent=EMOJIS[ci];cur.classList.add('pop');setTimeout(()=>cur.classList.remove('pop'),220)},1600);
+document.addEventListener('click',e=>{ci=(ci+1)%EMOJIS.length;cur.textContent=EMOJIS[ci];cur.classList.add('pop');setTimeout(()=>cur.classList.remove('pop'),220);spkS(e.clientX,e.clientY)});
+
+/* ── SPARKS ── */
+const SC2=['#ff6bb3','#f7c948','#e91e8c','#c084fc','#fff','#ff3da0','#7de8ff'];
+function spkS(x,y){for(let i=0;i<14;i++){const s=document.createElement('div');s.className='spark';const a=(Math.PI*2/14)*i,d=38+Math.random()*52;s.style.cssText=`left:${x}px;top:${y}px;background:${SC2[i%7]};--dx:${Math.cos(a)*d}px;--dy:${Math.sin(a)*d}px`;document.body.appendChild(s);setTimeout(()=>s.remove(),750)}}
+
+/* ── KISS BURST ── */
+function sendKiss(){
+  const pool=['💋','😘','💗','💖','👑','🌹','🥹','💌','✨','💕','🌸','💐'];
+  for(let i=0;i<45;i++){setTimeout(()=>{
+    const el=document.createElement('div');el.className='kfly';
+    const x=Math.random()*innerWidth,y=innerHeight*.5+Math.random()*200;
+    const kx=(Math.random()-.5)*350,ky=-(Math.random()*450+80);
+    el.style.cssText=`left:${x}px;top:${y}px;--kx:${kx}px;--ky:${ky}px;font-size:${20+Math.random()*26}px`;
+    el.textContent=pool[Math.floor(Math.random()*pool.length)];
+    document.body.appendChild(el);setTimeout(()=>el.remove(),2500);
+  },i*60)}
+}
+
+/* ── TOUCH BUBBLES (mobile) ── */
+document.addEventListener('touchstart',e=>{const t=e.touches[0];
+  for(let i=0;i<5;i++){setTimeout(()=>{
+    const el=document.createElement('div');
+    el.style.cssText=`position:fixed;left:${t.clientX}px;top:${t.clientY}px;font-size:${20+Math.random()*18}px;pointer-events:none;z-index:99999;animation:fslide 2.5s ease forwards;transform:translate(-50%,-50%)`;
+    el.textContent=EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+    document.body.appendChild(el);setTimeout(()=>el.remove(),2600)},i*120)}
+},{passive:true});
+
+/* ── SCROLL REVEAL ── */
+const rvs=document.querySelectorAll('.rv');
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:.1});
+rvs.forEach(r=>ro.observe(r));
+</script>
+</body>
+</html>
